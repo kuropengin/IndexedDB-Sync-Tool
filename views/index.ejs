@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <script src="https://unpkg.com/dexie@3.0.2/dist/dexie.min.js"></script>
+    <script src="/javascripts//Sync-IndexedDB.js"></script>
+    <script src="/javascripts//Sync-Trigger.js"></script>
   </head>
   <body>
-    <iframe id="editor" src="./editor/">
+    <iframe id="editor" src="./editor/" onload="trigger_init();">
   </body>
 </html>
