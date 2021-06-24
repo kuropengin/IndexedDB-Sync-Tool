@@ -3,13 +3,20 @@ const db = new Dexie("JupyterLite Storage");
 var now_sync = false;
 var global_local_db = [];
 
-db.version(0.5).stores({
-    checkpoints: "",
-    counters: "",
-    files: "",
-    "local-forage-detect-blob-support": "",
-    settings: "",
-});
+
+function indexed_init(){
+	console.log("22");
+	return new Promise(function (resolve) {
+		db.version(0.5).stores({
+			checkpoints: "",
+			counters: "",
+			files: "",
+			"local-forage-detect-blob-support": "",
+			settings: "",
+		});	
+		resolve();
+	});
+}
 
 
 async function init(){
@@ -211,6 +218,7 @@ async function sync_remote_db(){
 			}
 			
 			global_local_db = local_db_list;
+			db.settings.put(new Date(),"remote-indexed-last_modified");
 			now_sync = false;
 
 			/*
@@ -267,7 +275,3 @@ function local_db_diff_check(){
 		
 	}); 
 }
-
-
-
-init();

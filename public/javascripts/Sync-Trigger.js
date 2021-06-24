@@ -13,8 +13,8 @@ function trigger_init(){
 
     if(!trigger_init_check){
         //keybind_init();
-        observe_init();
         trigger_init_check = true;
+        observe_init();
     }
     
 }
@@ -23,11 +23,11 @@ function trigger_init(){
 function observe_init(){
 
     var count = 0;
-    const gtelsment = function(){
+    const gtelsment = async function(){
         var element = document.getElementById("editor").contentWindow.document.getElementsByClassName("jp-DirListing-content")[0];
         if(!element){
             count += 1;
-            if(count <= 5){
+            if(count <= 30){
                 setTimeout(gtelsment, 1000);
             }
         }
@@ -36,7 +36,6 @@ function observe_init(){
                 if(await local_db_diff_check()){
                     if(!now_sync){
                         console.log("sync!!");
-                        db.settings.put(new Date(),"remote-indexed-last_modified");
                         init();
                     }
                 }
@@ -48,6 +47,7 @@ function observe_init(){
                 subtree: true,
                 attributeFilter: ["li","title"]
             };
+            await indexed_init();
             mo.observe(element, config);
         }
     } 
