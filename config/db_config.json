@@ -1,6 +1,0 @@
-{
-    "mongo_url" : "mongo" ,
-    "db_name" : "remote-indexedDB" ,
-    "user" : "root" ,
-    "pass" : "pass" 
-}
