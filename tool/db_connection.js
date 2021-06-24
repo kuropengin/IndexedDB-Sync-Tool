@@ -3,18 +3,18 @@ const mongoose = require('mongoose');
 const db_config = require('../config/db_config.json');
 
 const DB_URL = db_config.mongo_url || process.env.REMOTE_DB_URL || "mongo";
-const DB_URL = db_config.db_name || process.env.REMOTE_DB_NAME || "remote-indexedDB";
-const DB_URL = db_config.user || process.env.REMOTE_DB_USER || "";
-const DB_URL = db_config.pass || process.env.REMOTE_DB_PASS || "";
+const DB_NAME = db_config.db_name || process.env.REMOTE_DB_NAME || "remote-indexedDB";
+const DB_USER = db_config.user || process.env.REMOTE_DB_USER || "";
+const DB_PASS = db_config.pass || process.env.REMOTE_DB_PASS || "";
 
 
-const db_path = 'mongodb://' + db_config.mongo_url ;
+const db_path = 'mongodb://' + DB_URL ;
 mongoose.connect( db_path , {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  user: db_config.user,
-  pass: db_config.pass,
-  dbName: db_config.db_name,
+  user: DB_USER,
+  pass: DB_PASS,
+  dbName: DB_NAME,
 },
   (err) => {
     if(err) {
