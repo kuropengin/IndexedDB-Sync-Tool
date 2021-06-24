@@ -2,6 +2,11 @@ const mongoose = require('mongoose');
 
 const db_config = require('../config/db_config.json');
 
+const DB_URL = db_config.mongo_url || process.env.REMOTE_DB_URL || "mongo";
+const DB_URL = db_config.db_name || process.env.REMOTE_DB_NAME || "remote-indexedDB";
+const DB_URL = db_config.user || process.env.REMOTE_DB_USER || "";
+const DB_URL = db_config.pass || process.env.REMOTE_DB_PASS || "";
+
 
 const db_path = 'mongodb://' + db_config.mongo_url ;
 mongoose.connect( db_path , {
